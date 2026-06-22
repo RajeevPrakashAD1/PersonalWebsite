@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+/* ============================================================
+   RETRO PIXEL / ARCADE THEME
+   - 'Press Start 2P' = chunky 8-bit headings + UI labels (use small sizes)
+   - 'VT323'          = readable CRT terminal font for body copy
+   Fonts are loaded in index.html.
+   ============================================================ */
+
+@theme {
+  /* Arcade palette — register as Tailwind colors (bg-arc-*, text-arc-*, border-arc-*) */
+  --color-arc-bg: #0a0612;
+  --color-arc-surface: #160e29;
+  --color-arc-surface2: #1f1440;
+  --color-arc-ink: #ece4ff;
+  --color-arc-dim: #9a86c7;
+  --color-arc-green: #39ff14;
+  --color-arc-cyan: #22e3ff;
+  --color-arc-pink: #ff3ca6;
+  --color-arc-yellow: #ffd23f;
+  --color-arc-purple: #8b5cf6;
+
+  /* Fonts — usable as font-pixel / font-term */
+  --font-pixel: "Press Start 2P", ui-monospace, monospace;
+  --font-term: "VT323", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base page: deep arcade purple-black with a faint grid floor */
+body {
+  @apply bg-arc-bg text-arc-ink antialiased;
+  font-family: var(--font-term);
+  font-size: 1.15rem;
+  line-height: 1.4;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
+}
+
+/* CRT overlay: scanlines + vignette + a faint flicker, drawn above everything */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.18) 0px,
+      rgba(0, 0, 0, 0.18) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.55) 100%);
+  animation: crt-flicker 6s infinite steps(60);
+}
+
+@keyframes crt-flicker {
+  0%, 97%, 100% { opacity: 1; }
+  98% { opacity: 0.92; }
+  99% { opacity: 0.97; }
+}
+
+/* ------------------------------------------------------------------
+   Reusable arcade building blocks
+   ------------------------------------------------------------------ */
+
+/* Pixel font helper with a hard "stamped" edge */
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.02em;
+}
+
+/* Chunky 8-bit panel: square corners + thick border + hard offset shadow */
+.pixel-panel {
+  @apply border-4 border-arc-purple bg-arc-surface;
+  border-radius: 0;
+  box-shadow: 6px 6px 0 0 #000;
+}
+
+/* Interactive panels lift toward the pointer like an arcade button */
+.pixel-hover {
+  transition: transform 120ms steps(2), box-shadow 120ms steps(2),
+    border-color 120ms;
+}
+.pixel-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 0 #000;
+}
+
+/* Pixel button — press it down on hover/active */
+.pixel-btn {
+  font-family: var(--font-pixel);
+  border-radius: 0;
+  @apply border-4 px-5 py-3 text-[11px] uppercase tracking-wide;
+  box-shadow: 5px 5px 0 0 #000;
+  transition: transform 90ms steps(2), box-shadow 90ms steps(2);
+}
+.pixel-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 #000;
+}
+.pixel-btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 0 #000;
+}
+
+/* Neon text glows */
+.glow-green { text-shadow: 0 0 6px rgba(57, 255, 20, 0.8), 0 0 16px rgba(57, 255, 20, 0.4); }
+.glow-cyan  { text-shadow: 0 0 6px rgba(34, 227, 255, 0.8), 0 0 16px rgba(34, 227, 255, 0.4); }
+.glow-pink  { text-shadow: 0 0 6px rgba(255, 60, 166, 0.85), 0 0 18px rgba(255, 60, 166, 0.4); }
+.glow-yellow{ text-shadow: 0 0 6px rgba(255, 210, 63, 0.85), 0 0 18px rgba(255, 210, 63, 0.4); }
+
+/* Blink (PRESS START / cursor) */
+.blink { animation: blink 1.05s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Slow color cycle for the marquee title */
+.rainbow {
+  animation: rainbow 4s linear infinite;
+}
+@keyframes rainbow {
+  0%   { color: var(--color-arc-cyan);   text-shadow: 0 0 10px rgba(34,227,255,.6); }
+  33%  { color: var(--color-arc-pink);   text-shadow: 0 0 10px rgba(255,60,166,.6); }
+  66%  { color: var(--color-arc-yellow); text-shadow: 0 0 10px rgba(255,210,63,.6); }
+  100% { color: var(--color-arc-cyan);   text-shadow: 0 0 10px rgba(34,227,255,.6); }
+}
+
+/* ------------------------------------------------------------------
+   Markdown article styling (blog posts + about), arcade-flavored.
+   ------------------------------------------------------------------ */
+.prose-custom {
+  @apply text-xl leading-relaxed text-arc-ink;
+}
+.prose-custom h1 {
+  @apply mt-8 mb-4 text-arc-green;
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.8), 0 0 16px rgba(57, 255, 20, 0.4);
+}
+.prose-custom h2 {
+  @apply mt-8 mb-3 text-arc-cyan;
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.prose-custom h3 {
+  @apply mt-6 mb-2 text-arc-pink;
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+.prose-custom p {
+  @apply my-4;
+}
+.prose-custom a {
+  @apply text-arc-cyan underline underline-offset-4 hover:text-arc-yellow;
+}
+.prose-custom ul {
+  @apply my-4 list-none space-y-1 pl-6;
+}
+.prose-custom ul li::before {
+  content: "▸ ";
+  @apply text-arc-pink;
+}
+.prose-custom ol {
+  @apply my-4 list-decimal space-y-1 pl-6;
+}
+.prose-custom strong {
+  @apply font-bold text-arc-yellow;
+}
+.prose-custom blockquote {
+  @apply my-4 border-l-4 border-arc-pink pl-4 text-arc-dim italic;
+}
+.prose-custom code {
+  @apply bg-arc-surface2 px-1.5 py-0.5 text-base text-arc-green;
+  border-radius: 0;
+}
+.prose-custom pre {
+  @apply my-4 overflow-x-auto border-2 border-arc-purple bg-black p-4 text-base;
+  border-radius: 0;
+}
+.prose-custom pre code {
+  @apply bg-transparent p-0 text-arc-green;
+}
+.prose-custom img {
+  @apply my-4 border-4 border-arc-purple;
+  border-radius: 0;
+}
+.prose-custom table {
+  @apply my-4 w-full border-collapse text-base;
+}
+.prose-custom th,
+.prose-custom td {
+  @apply border-2 border-arc-purple px-3 py-2 text-left;
+}
+.prose-custom th {
+  @apply bg-arc-surface2 text-arc-cyan;
+}

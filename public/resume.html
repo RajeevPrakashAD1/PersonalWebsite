@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rajeev Prakash — Resume</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#555; --rule:#222; --accent:#000; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #e9e9e9; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--ink); font-size: 9.5pt; line-height: 1.17;
+  }
+  .page {
+    background: #fff; width: 8.5in; min-height: 11in;
+    margin: 24px auto; padding: 0.5in 0.6in; box-shadow: 0 2px 12px rgba(0,0,0,.18);
+  }
+  header { text-align: center; margin-bottom: 6px; }
+  header h1 { font-size: 22pt; font-weight: 700; margin: 0; letter-spacing: .5px; }
+  header .contact { font-size: 9.5pt; color: var(--ink); margin-top: 4px; }
+  header .contact a { color: var(--ink); text-decoration: none; }
+  header .contact span { white-space: nowrap; }
+  .sep { color: #999; padding: 0 5px; }
+
+  section { margin-top: 5px; }
+  h2 {
+    font-variant: small-caps; font-size: 11.5pt; letter-spacing: .5px;
+    margin: 0 0 3px; padding-bottom: 2px; border-bottom: 1.2px solid var(--rule);
+    text-transform: lowercase; font-weight: 700;
+  }
+  .summary { margin: 2px 0 0; text-align: justify; }
+
+  .entry { margin-top: 3px; }
+  .entry .row { display: flex; justify-content: space-between; align-items: baseline; }
+  .entry .title { font-weight: 700; font-size: 11pt; }
+  .entry .when { font-size: 9.5pt; }
+  .entry .sub { display: flex; justify-content: space-between; font-style: italic; font-size: 10pt; color: var(--muted); }
+  ul { margin: 2px 0 0; padding-left: 18px; }
+  li { margin: 1px 0; text-align: justify; }
+
+  .skills p { margin: 2px 0; }
+  .skills b { font-weight: 700; }
+  .proj-title b { font-weight: 700; }
+  .proj-title .stack { font-style: italic; color: var(--muted); font-weight: 400; }
+
+  @page { size: letter; margin: 0.35in 0.55in; }
+  @media print {
+    body { background: #fff; font-size: 10pt; }
+    .page { box-shadow: none; margin: 0; width: auto; min-height: auto; padding: 0; }
+    .no-print { display: none; }
+    a { color: inherit; text-decoration: none; }
+  }
+  .no-print {
+    max-width: 8.5in; margin: 16px auto 0; text-align: center;
+    font-family: -apple-system, Segoe UI, Roboto, sans-serif; color: #444;
+  }
+  .no-print button {
+    font-size: 13px; padding: 8px 16px; border: 1px solid #888; border-radius: 6px;
+    background: #fff; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+  &nbsp; To replace the old PDF: print this → "Save as PDF" → save as
+  <code>Rajeev_Prakash_Resume.pdf</code> in <code>/public</code>.
+</div>
+
+<div class="page">
+  <header>
+    <h1>Rajeev Prakash</h1>
+    <div class="contact">
+      <span>Hyderabad, India</span><span class="sep">|</span>
+      <span>+91 9525551173</span><span class="sep">|</span>
+      <span><a href="mailto:prakashrajeev805@gmail.com">prakashrajeev805@gmail.com</a></span><br/>
+      <span><a href="https://github.com/RajeevPrakashAD1">github.com/RajeevPrakashAD1</a></span><span class="sep">|</span>
+      <span><a href="https://www.linkedin.com/in/rajeevprakash-4895201b7">linkedin.com/in/rajeevprakash</a></span><span class="sep">|</span>
+      <span><a href="https://leetcode.com/u/prakashrajeev805/">leetcode.com/prakashrajeev805</a></span>
+    </div>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p class="summary">
+      Software Engineer at Electronic Arts with 2 years building and maintaining
+      live mobile games (NBA, Madden NFL Arcade). I ship live updates across UI,
+      content, client, and server; drive platform certification and localization;
+      deliver cross-platform releases (Apple Arcade); and build internal C#/.NET
+      tooling — with a full-stack background in React, Node, and MongoDB.
+    </p>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="row">
+        <span class="title">Vellore Institute of Technology</span>
+        <span class="when">May 2020 – May 2024</span>
+      </div>
+      <div class="sub"><span>Bachelor of Technology in Computer Science</span><span>Vellore, Tamil Nadu</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Work Experience</h2>
+
+    <div class="entry">
+      <div class="row"><span class="title">Software Engineer I</span><span class="when">May 2024 – Present</span></div>
+      <div class="sub"><span>Electronic Arts</span><span>Hyderabad, India</span></div>
+      <ul>
+        <li>Maintain and ship live updates for <b>NBA</b>, a live mobile title — triaging and resolving daily bugs across gameplay UI, loading screens, in-game maps, content, client, and server to keep the live build stable for players.</li>
+        <li>Drive <b>platform certification compliance</b> — resolve cert/failure reports and deliver release-ready builds across platforms.</li>
+        <li>Led <b>localization enablement on Madden NFL Arcade</b>, refactoring non-localized builds to support localization for international release; built the <b>Apple Arcade</b> store version with other engineers.</li>
+        <li>Developed features for an internal <b>C#/.NET (WPF)</b> content-delivery tool — including inline text editing — to streamline content workflows for the team.</li>
+        <li>Earlier in role, built a <b>C#/Unity automation framework</b> for titles including Plants vs. Zombies 3 and Star Wars (swipe gestures, runtime data extraction, tap interactions) to automate gameplay testing.</li>
+        <li>Partner with the <b>DRE</b> team to keep <b>Jenkins CI</b> pipelines green and with <b>QV/QA</b> to resolve binding, client, and server-side issues across environments.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="row"><span class="title">Software Engineer Intern</span><span class="when">Jan 2024 – May 2024</span></div>
+      <div class="sub"><span>Electronic Arts</span><span>Hyderabad, India</span></div>
+      <ul>
+        <li>Developed a mini-game for Dash Adventure, shipping new features into a large existing codebase.</li>
+        <li>Released monthly live events through a pipeline system — populating the admin panel and implementing the Unity changes to reflect each event in-game.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="row"><span class="title">Frontend Lead</span><span class="when">May 2022 – Jul 2022</span></div>
+      <div class="sub"><span>Powstik</span><span>Bengaluru, India</span></div>
+      <ul>
+        <li>Led React front-end delivery and team workflows, ensuring on-time project delivery in a collaborative environment.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="row"><span class="title">Full-Stack Developer</span><span class="when">Jul 2021 – Dec 2021</span></div>
+      <div class="sub"><span>Aitra Pvt. Ltd.</span><span>Noida, India</span></div>
+      <ul>
+        <li>Built full-stack features with React and Node.js — creating landing pages and the desktop version of the mudda.in website.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="entry">
+      <div class="proj-title"><b>TPS Shooter</b> <span class="stack">| Unity, C#</span></div>
+      <ul>
+        <li>Built a mobile third-person shooter with player &amp; enemy AI, dynamic gun/bullet and grenade systems, Cinemachine zoom-aim, power-ups, inventory, mini-map, terrain building, and a local save system.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="proj-title"><b>Random Chatting App</b> <span class="stack">| React, Node.js, MongoDB, Socket.IO</span></div>
+      <ul>
+        <li>Built a real-time group/direct-message chat app with Socket.IO; deployed on AWS for scalable, reliable performance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="skills">
+    <h2>Technical Skills</h2>
+    <p><b>Languages:</b> C#, .NET, C/C++, Python, JavaScript, HTML/CSS, SQL</p>
+    <p><b>Frameworks:</b> Unity, Unreal, WPF, React, Node.js, MongoDB</p>
+    <p><b>Developer Tools:</b> Git, Perforce, Jenkins, GitHub Copilot, VS Code, Visual Studio, JetBrains IDEs</p>
+  </section>
+
+  <section>
+    <h2>Achievements</h2>
+    <ul>
+      <li><b>Micron Hackathon</b> — 2nd place for a sustainable-development waste-management solution.</li>
+      <li><b>Kavach Hackathon</b> — 7th in the university for a "Fake News Detection System" presentation.</li>
+      <li><b>Microsoft Engage</b> — Selected for the program; built a project under a mentor's guidance.</li>
+    </ul>
+  </section>
+</div>
+
+</body>
+</html>
