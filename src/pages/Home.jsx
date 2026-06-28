@@ -15,7 +15,8 @@ export default function Home() {
   const goals = data?.[0] ?? []
   const projects = data?.[1] ?? []
   const posts = data?.[2] ?? []
-  const activeGoal = goals.find((g) => g.status === 'active') || goals[0]
+  const activeGoals = goals.filter((g) => g.status === 'active')
+  const questsToShow = activeGoals.length ? activeGoals : goals.slice(0, 1)
   const featured = projects.slice(0, 2)
   const latestPosts = posts.slice(0, 3)
 
@@ -63,26 +64,31 @@ export default function Home() {
 
       {data && (
         <>
-          {/* Current quest spotlight */}
-          {activeGoal && (
+          {/* Active quests */}
+          {questsToShow.length > 0 && (
             <section>
-              <SectionHeading title="CURRENT QUEST" to="/goals" linkLabel="ALL QUESTS" />
-              <Link
-                to="/goals"
-                className="pixel-panel pixel-hover block p-6"
-              >
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="font-pixel text-xs text-arc-pink glow-pink sm:text-sm">
-                    ⚔ {activeGoal.title}
-                  </p>
-                  <span className="font-pixel text-[10px] text-arc-yellow">
-                    {activeGoal.progress}% COMPLETE
-                  </span>
-                </div>
-                {activeGoal.why && (
-                  <p className="mt-3 font-term text-lg text-arc-dim">{activeGoal.why}</p>
-                )}
-              </Link>
+              <SectionHeading title="CURRENT QUESTS" to="/goals" linkLabel="ALL QUESTS" />
+              <div className="space-y-4">
+                {questsToShow.map((goal) => (
+                  <Link
+                    key={goal.id ?? goal.title}
+                    to="/goals"
+                    className="pixel-panel pixel-hover block p-6"
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="font-pixel text-xs text-arc-pink glow-pink sm:text-sm">
+                        ⚔ {goal.title}
+                      </p>
+                      <span className="font-pixel text-[10px] text-arc-yellow">
+                        {goal.progress}% COMPLETE
+                      </span>
+                    </div>
+                    {goal.why && (
+                      <p className="mt-3 font-term text-lg text-arc-dim">{goal.why}</p>
+                    )}
+                  </Link>
+                ))}
+              </div>
             </section>
           )}
 
